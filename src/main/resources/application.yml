@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/search
+    username: root
+    password: root
+    platform: mysql
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      pool-name: HikariCorePool
+
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format-sql: true
+        dialect: org.hibernate.dialect.MySql8Dialect
+      default_schema: public
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+   # database-platform: org.hibernate.dialect.MySql5Dialect
