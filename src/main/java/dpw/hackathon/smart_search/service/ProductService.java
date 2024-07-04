@@ -2,6 +2,9 @@ package dpw.hackathon.smart_search.service;
 
 import dpw.hackathon.smart_search.entity.Product;
 import dpw.hackathon.smart_search.repository.ProductRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +19,13 @@ import java.util.Random;
 @Slf4j
 public class ProductService {
 
-    private List<String> categories = Arrays.asList("Electronics", "Fashion", "Food");
+    private final List<String> categories = Arrays.asList("Electronics", "Fashion", "Food");
 
     @Autowired
     private ProductRepository productRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
 
     @Transactional
@@ -31,8 +37,9 @@ public class ProductService {
         return productRepository.findById(id).orElseThrow(() -> null);
     }
 
-    public Product getProductByQuery(String query){
-        return null;
+    public List<Product> getProductByQuery(String query){
+        TypedQuery<Product> query1 = entityManager.createQuery(query, Product.class);
+        return query1.getResultList();
     }
 
 
@@ -57,4 +64,6 @@ public class ProductService {
     public void deleteAllProducts(){
         productRepository.deleteAll();
     }
+
+
 }

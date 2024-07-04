@@ -1,3 +1,7 @@
+server:
+  port: 8080
+  servlet:
+    contextPath: /api/smart-search
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -21,3 +25,6 @@ spring:
       ddl-auto: update
     open-in-view: false
    # database-platform: org.hibernate.dialect.MySql5Dialect
+springdoc:
+  swagger-ui:
+    urlsPrimaryName: Smart-Search

@@ -1,0 +1,1 @@
+http://localhost:8080/api/smart-search/swagger-ui/index.html
